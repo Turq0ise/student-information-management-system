@@ -10,13 +10,13 @@ Laboratory Report 2 for CPE106L-4 (Software Design Laboratory)
 |   Mabini, Jairus Duane    ||
 
 ## File Structure
-3 Main Files: `app.py`, `data.py`, and `studentData.json`
+3 Main Files: `data.py`, `app.py`, and `studentData.json`
 
-### `app.py`:
+### `data.py`:
 * handles the data aspect of the project
 * should contain the implementation for instructions C.1. to C.4.
 
-### `data.py`:
+### `app.py`:
 * handles the user interaction and user interface
 * uses the implementations from `data.py` for data handling
 * should contain the implementation for instruction C.5.b
