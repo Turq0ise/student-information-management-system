@@ -1,20 +1,20 @@
 import tkinter as tk
 from tkinter import messagebox
 
+import data
+
 
 window = tk.Tk()
 window.title("Student Information Management System")
 window.geometry("500x500")
-
 
 student_name = tk.StringVar()
 student_program = tk.StringVar()
 
 
 def add_student():
-
-    name = student_name.get()
-    program = student_program.get()
+    name = student_name.get().strip()
+    program = student_program.get().strip()
 
     if name == "" or program == "":
         messagebox.showwarning(
@@ -23,26 +23,23 @@ def add_student():
         )
         return
 
-    studentDict = data.getStudentDictionary(
-        name,
-        program
-    )
-
-    data.addToFile(studentDict)
+    student_dict = data.getStudentDictionary(name, program)
+    data.addToFile(student_dict)
 
     messagebox.showinfo(
         "Success",
         "Student Added Successfully!\n\n"
-        f"Name: {studentDict['Name']}\n"
-        f"Program: {studentDict['Program']}\n"
-        f"Student ID: {studentDict['Student ID'][0]}-{studentDict['Student ID'][1]}"
+        f"Name: {student_dict['Name']}\n"
+        f"Program: {student_dict['Program']}\n"
+        f"Student ID: "
+        f"{student_dict['Student ID'][0]}-"
+        f"{student_dict['Student ID'][1]}"
     )
 
     clear_fields()
 
 
 def view_students():
-
     students = data.getFileContents()
 
     if len(students) == 0:
@@ -58,14 +55,13 @@ def view_students():
         records += (
             f"Name: {student['Name']}\n"
             f"Program: {student['Program']}\n"
-            f"Student ID: {student['Student ID'][0]}-{student['Student ID'][1]}\n"
+            f"Student ID: "
+            f"{student['Student ID'][0]}-"
+            f"{student['Student ID'][1]}\n"
             "--------------------------\n"
         )
 
-    messagebox.showinfo(
-        "Student Records",
-        records
-    )
+    messagebox.showinfo("Student Records", records)
 
 
 def clear_fields():
@@ -78,14 +74,9 @@ title = tk.Label(
     text="Student Information\nManagement System",
     font=("Arial", 16, "bold")
 )
-
 title.pack(pady=20)
 
-
-tk.Label(
-    window,
-    text="Student Name"
-).pack()
+tk.Label(window, text="Student Name").pack()
 
 tk.Entry(
     window,
@@ -93,18 +84,13 @@ tk.Entry(
     width=40
 ).pack(pady=5)
 
-
-tk.Label(
-    window,
-    text="Program"
-).pack()
+tk.Label(window, text="Program").pack()
 
 tk.Entry(
     window,
     textvariable=student_program,
     width=40
 ).pack(pady=5)
-
 
 tk.Button(
     window,
@@ -113,7 +99,6 @@ tk.Button(
     width=25
 ).pack(pady=10)
 
-
 tk.Button(
     window,
     text="View Students",
@@ -121,13 +106,11 @@ tk.Button(
     width=25
 ).pack(pady=10)
 
-
 tk.Button(
     window,
     text="Clear",
     command=clear_fields,
     width=25
 ).pack(pady=10)
-
 
 window.mainloop()
