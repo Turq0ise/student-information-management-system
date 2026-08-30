@@ -1,18 +1,16 @@
 [
     {
-        "Name": "Joel Alexander R. Samaniego",
+        "Name": "Joel",
         "Student ID": [
             2026,
             1001
         ],
-        "Program": "CPE"
-    },
-    {
-        "Name": "Enrico M. Gorospe",
-        "Student ID": [
-            2026,
-            1002
-        ],
-        "Program": "CPE"
+        "Course": "CPE",
+        "Subjects": [
+            "Test",
+            "Math",
+            "History",
+            "Programming"
+        ]
     }
 ]

@@ -17,7 +17,10 @@ class StudentInformationApp:
 
         self.student_name = tk.StringVar()
         self.student_course = tk.StringVar()
+        self.student_id = tk.StringVar()
         self.subject_name = tk.StringVar()
+
+        self.current_student_subjects = []
         self.build_interface()
 
     def build_interface(self):
@@ -55,6 +58,14 @@ class StudentInformationApp:
         )
         ttk.Entry(details_frame, textvariable=self.student_course).grid(
             row=1, column=1, sticky="ew", pady=6
+        )
+
+        ttk.Label(details_frame, text="Student ID: ").grid(
+            row=2, column=0, sticky="w", padx=(0, 12), pady=6
+        )
+        self.student_id_display = ttk.Label(details_frame, text="")
+        self.student_id_display.grid(
+            row=2, column=1, sticky="ew", pady=6
         )
 
         subjects_frame = ttk.LabelFrame(
@@ -101,14 +112,17 @@ class StudentInformationApp:
             button_frame.columnconfigure(column, weight=1)
 
         ttk.Button(
-            button_frame, text="Save Student", command=self.save_student
+            button_frame, text="Load Student", command=self.load_student
         ).grid(row=0, column=0, sticky="ew", padx=(0, 6))
         ttk.Button(
+            button_frame, text="Save Student", command=self.save_student
+        ).grid(row=0, column=1, sticky="ew", padx=(0, 6))
+        ttk.Button(
             button_frame, text="View Students", command=self.view_students
-        ).grid(row=0, column=1, sticky="ew", padx=6)
+        ).grid(row=0, column=2, sticky="ew", padx=6)
         ttk.Button(
             button_frame, text="Clear Form", command=self.clear_fields
-        ).grid(row=0, column=2, sticky="ew", padx=(6, 0))
+        ).grid(row=0, column=3, sticky="ew", padx=(6, 0))
         self.name_entry.focus_set()
 
     def add_subject(self):
@@ -130,6 +144,7 @@ class StudentInformationApp:
             return
 
         self.subject_list.insert(tk.END, subject)
+        self.current_student_subjects.append(subject)
         self.subject_name.set("")
 
     def remove_subject(self):
@@ -142,12 +157,32 @@ class StudentInformationApp:
             return
         for index in reversed(selected):
             self.subject_list.delete(index)
+            self.current_student_subjects.pop(index)
+
+    def load_student(self):
+        name = self.student_name.get().strip()
+        course = self.student_course.get().strip()
+
+        loadedStudent = data.getStudentDictionary(name, course)
+        if(loadedStudent == {}): 
+            messagebox.showerror(title="student_not_found_error", message="Student was not found, please try again.")
+            return
+
+        self.student_id = loadedStudent["Student ID"]
+        self.student_id_display.config(text=self.student_id)
+
+        self.current_student_subjects = self.current_student_subjects + loadedStudent["Subjects"]
+        for subject in loadedStudent["Subjects"]:
+            self.subject_list.insert(tk.END, subject)
+
 
     def save_student(self):
         """Validate and save one complete student dictionary."""
         name = self.student_name.get().strip()
         course = self.student_course.get().strip()
-        subjects = list(self.subject_list.get(0, tk.END))
+        subjects = self.current_student_subjects
+
+        print(subjects)
 
         if not name or not course:
             messagebox.showwarning(
@@ -161,7 +196,7 @@ class StudentInformationApp:
             )
             return
 
-        student = data.getStudentDictionary(name, course, subjects)
+        student = data.createStudentDictionary(name, course, subjects, studentIDParam=self.student_id)
         data.addToFile(student)
         student_id = student["Student ID"]
         messagebox.showinfo(
@@ -170,8 +205,10 @@ class StudentInformationApp:
             f"Name: {student['Name']}\n"
             f"Course: {student['Course']}\n"
             f"Student ID: {student_id[0]}-{student_id[1]}\n"
-            f"Subjects: {', '.join(student['Subjects'])}",
+            f"Subjects: {student['Subjects']}",
         )
+        self.student_id = "";
+        self.current_student_subjects = []
         self.clear_fields()
 
     def view_students(self):
