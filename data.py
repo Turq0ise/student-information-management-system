@@ -6,8 +6,8 @@ STUDENT_DATA_FILE_PATH = Path(STUDENT_DATA_FILE_NAME)
 
 def getFileContents():
     fileContents = []
-    if STUDENT_DATA_FILE_PATH.is_file(): # Checks if the file exists
-        if STUDENT_DATA_FILE_PATH.stat().st_size != 0: # Checks if the file is not empty
+    if STUDENT_DATA_FILE_PATH.is_file(): 
+        if STUDENT_DATA_FILE_PATH.stat().st_size != 0: 
             with open(STUDENT_DATA_FILE_NAME, "r") as file:
                 fileContents = json.load(file)
     return fileContents
