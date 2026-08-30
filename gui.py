@@ -1,4 +1,4 @@
-"""Tkinter interface for the Student Information Management System."""
+"""Tkinter interface for the Student Information Management System"""
 
 import tkinter as tk
 from tkinter import messagebox, ttk
