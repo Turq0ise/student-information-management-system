@@ -6,7 +6,7 @@ Laboratory Report 2 for CPE106L-4 (Software Design Laboratory)
 |---------------------------|------- |
 | Samaniego, Joel Alexander |Turq0ise|
 | Canuto, Vince Allen Efren |vaecanuto1|
-|     Gorospe, Enrico       ||
+|     Gorospe, Enrico       |EnricoGorospe|
 |   Mabini, Jairus Duane    |XinJaixz|
 
 ## File Structure
