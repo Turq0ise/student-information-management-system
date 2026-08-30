@@ -16,11 +16,12 @@ def generateStudentID():
     data = getFileContents()
     return (datetime.now().year, 1000+len(data)+1)
 
-def getStudentDictionary(studentNameParam, studentProgramParam):    
+def getStudentDictionary(studentNameParam, studentProgramParam):
     return {
         "Name": studentNameParam,
         "Student ID": generateStudentID(),
         "Program": studentProgramParam,
+        "Subjects": [] 
     }
 
 def addToFile(studentParam):
@@ -28,3 +29,15 @@ def addToFile(studentParam):
     data.append(studentParam)
     with open("studentData.json", "w") as file:
         json.dump(data, file, indent=4)
+
+def addSubjectToStudent(student_dict, subject_name):
+    if "Subjects" not in student_dict:
+        student_dict["Subjects"] = []
+        
+    if subject_name and subject_name not in student_dict["Subjects"]:
+        student_dict["Subjects"].append(subject_name)
+        return True
+    return False
+
+def getStudentSubjects(student_dict):
+    return student_dict.get("Subjects", [])
