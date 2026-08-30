@@ -5,9 +5,9 @@ Laboratory Report 2 for CPE106L-4 (Software Design Laboratory)
 |          Name             | Github |
 |---------------------------|------- |
 | Samaniego, Joel Alexander |Turq0ise|
-| Canuto, Vince Allen Efren |XinJaixz|
+| Canuto, Vince Allen Efren ||
 |     Gorospe, Enrico       ||
-|   Mabini, Jairus Duane    ||
+|   Mabini, Jairus Duane    |XinJaixz|
 
 ## File Structure
 3 Main Files: `data.py`, `app.py`, and `studentData.json`
