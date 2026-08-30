@@ -5,7 +5,7 @@ Laboratory Report 2 for CPE106L-4 (Software Design Laboratory)
 |          Name             | Github |
 |---------------------------|------- |
 | Samaniego, Joel Alexander |Turq0ise|
-| Canuto, Vince Allen Efren ||
+| Canuto, Vince Allen Efren |XinJaixz|
 |     Gorospe, Enrico       ||
 |   Mabini, Jairus Duane    ||
 
