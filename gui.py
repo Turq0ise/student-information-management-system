@@ -196,7 +196,7 @@ class StudentInformationApp:
             )
             return
 
-        student = data.createStudentDictionary(name, course, subjects, studentIDParam=self.student_id)
+        student = data.createStudentDictionary(name, self.student_id, course, subjects)
         data.addToFile(student)
         student_id = student["Student ID"]
         messagebox.showinfo(

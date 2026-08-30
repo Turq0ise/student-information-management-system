@@ -24,7 +24,8 @@ def getStudentDictionary(studentNameParam, studentCourseParam):
     return {}
 
 def createStudentDictionary(studentNameParam, studentIDParam, studentCourseParam, studentSubjectsParam):
-    if studentIDParam == "": studentIDParam = generateStudentID()
+    if not isinstance(studentIDParam, tuple): studentIDParam = generateStudentID()
+
     return {
         "Name": studentNameParam,
         "Student ID": studentIDParam,

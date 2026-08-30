@@ -12,5 +12,16 @@
             "History",
             "Programming"
         ]
+    },
+    {
+        "Name": "Jai",
+        "Student ID": [
+            2026,
+            1002
+        ],
+        "Course": "cpe",
+        "Subjects": [
+            "t"
+        ]
     }
 ]
